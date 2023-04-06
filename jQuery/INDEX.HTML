@@ -8,76 +8,96 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
-    <title>Document</title>
+    <title>jQuery Validation</title>
 </head>
+<style>
+    form {
+        background: url("asset/login.jpg");
+        width: 400px;
+        height: 300px;
+        padding: 100px;
+        margin-left: 50px;
+        margin-top: 60px;
+        font-family: Britannic;
+        font-size: larger;
+        font-weight: 300;
+    }
+
+    body {
+        background: #36D1DC;
+        background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+        background: linear-gradient(to right, #5B86E5, #36D1DC);
+
+    }
+</style>
+
 <body>
-    <form name="myform" id="form1" method="post" action="https://jqueryui.com/">
-        <center>Login Details></center>
-
+    <h1>
+        <center>Login Credentials</center>
+    </h1>
+    <form name="form1" id="login" method="post" action="https://www.cgvakindia.com/">
         <label>Username</label>
-        <input type="text" id="username" name="username"><br><br>
-
-        <label>Password</label>
-        <input type="password" id="password" name="password"><br><br>
-
-        <label>Email</label>
-        <input type="email" id="email" name="email"><br><br>
-
+        <input type="text" id="uname" name="uname" placeholder="Enter your name"><br><br>
+        <label>E-mail</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email"><br><br>
         <label>Mobile number</label>
-        <input type="text" id="mobno" name="mobno"><br><br>
-
-        <button type="submit">SUBMIT</button>
-
+        <input type="text" id="mob" name="mob" placeholder="Enter your mobile number"><br><br>
+        <label>Password</label>
+        <input type="password" id="passwd" name="passwd" placeholder="########"><br><br>
+        <input type="submit" value="LOG-IN">
+        <input type="reset" value="CLEAR">
     </form>
     <script>
         $(document).ready(function () {
-            $("#form1").validate({
+            $("#login").validate({
                 rules: {
-                    'username': {
+                    'uname': {
                         required: true,
-                        minlength: 5,
-                        maxlength: 20,
-                        pattern: /^[a-zA-z ]+$/
-                    },
-                    'password': {
-                        required: true,
-                        minlength: 8,
+                        minlength: 3,
                         maxlength: 16,
-                        pattern : /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*+])$/
+                        pattern: /^[A-Za-z ]+$/
                     },
                     'email': {
                         required: true,
                         email: true,
-                        pattern: /^[a-z0-9]+@[a-z]+\.[a-z]{2,4}$/
+                        pattern: /^[a-z0-9]+@[cgvak]+\.[com]+$/
                     },
-                    'mobno': {
+                    'mob': {
                         required: true,
                         minlength: 10,
                         pattern: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
                     },
+                    'passwd': {
+                        required: true,
+                        minlength: 7,
+                        maxlength: 15,
+                        pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#@$!%&*])/
+                    }
                 },
                 messages: {
-                    'username': {
-                        required: " Please enter a username",
-                        minlength: " Your username must consist of at least 5 characters",
-                        maxlength: " Your username must not  contain  more than  20 characters",
-                        pattern: "pattern format is wrong"
-                    },
-                    'password': {
-                        required: " Please enter a password",
-                        minlength: " Your password must be consist of at least 8 characters",
+                    'uname': {
+                        required: "<br>Enter a Username",
+                        minlength: "<br>Username must exceed 3 characters",
+                        maxlength: "<br>Username should not exceed 16 Characters",
+                        pattern: "<br>Username must contain only alphabets"
                     },
                     'email': {
-                        required: "Please enter email-id",
-                        email: "Email-id format is wrong"
+                        required: "<br>Enter an email address",
+                        email: "<br>Enter a valid email address",
+                        pattern: "<br>Email address should be in valid format"
                     },
-                    'mobno': {
-                        required: "Please enter mobile number",
-                        pattern: "Phone number format is wrong",
-                        minlength: "Please enter 12 numbers",
-                        maxlength: "Please enter only  12 numbers"
+                    'mob': {
+                        required: "<br>Enter a mobile number",
+                        minlength: "<br>Mobile number should contain atleast 10 digits",
+                        pattern: "<br>Mobile number must follow (3-3-4) pattern"
                     },
-                },
+                    'passwd': {
+                        required: "<br>Enter a password",
+                        minlength: "<br>Password must contain atleast 7 characters",
+                        maxlength: "<br>Password should not exceed 15 Characters",
+                        pattern: "<br>Password should contain alphabets,one digit and a special character"
+                    }
+                }
             });
         });
     </script>
